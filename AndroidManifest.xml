@@ -4,9 +4,13 @@
     android:versionName="1.0" >
 
     <!-- GCM requires Android SDK version 2.2 (API level 8) or above. -->
-    <!-- The targetSdkVersion is optional, but it's always a good practice
-         to target higher versions. -->
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16"/>
+    <!--
+         The targetSdkVersion is optional, but it's always a good practice
+         to target higher versions.
+    -->
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="16" />
 
     <!-- GCM connects to Google Services. -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,17 +30,15 @@
     <permission
         android:name="com.pushyun.test.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission
-        android:name="com.pushyun.test.permission.C2D_MESSAGE" />
+
+    <uses-permission android:name="com.pushyun.test.permission.C2D_MESSAGE" />
 
     <!-- This app has permission to register and receive data message. -->
-    <uses-permission
-        android:name="com.google.android.c2dm.permission.RECEIVE" />
-    
-    <uses-permission android:name="android.permission.VIBRATE" />	
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    
+
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -50,7 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <!--
           BroadcastReceiver that will receive intents from GCM
           services and handle them to the custom IntentService.
@@ -62,12 +64,13 @@
             android:name="com.augmentum.pushyun.broadcast.MsgBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
-                Receives the actual messages.
+               <!--  Receives the actual messages. -->
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-                Receives the gcm registration id.
+                <!-- Receives the gcm registration id. -->
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                Receives the a2dm registration id.
+                <!-- Receives the a2dm registration id. -->
                 <action android:name="com.augmentum.pushyun.a2dm.intent.REGISTRATION" />
+
                 <category android:name="com.pushyun.test" />
             </intent-filter>
         </receiver>
@@ -79,10 +82,11 @@
           By default, it must be named .GCMIntentService, unless the
           application uses a custom BroadcastReceiver that redefines its name.
         -->
-         <service android:name=".PushMsgIntentService" />
-         <service android:name="com.augmentum.pushyun.service.PushA2DMService"></service>
-         <service android:name="com.augmentum.pushyun.service.PushService"></service>
-        
+        <service android:name=".PushMsgIntentService" />
+        <service android:name="com.augmentum.pushyun.service.PushA2DMService" >
+        </service>
+        <service android:name="com.augmentum.pushyun.service.PushService" >
+        </service>
     </application>
 
 </manifest>
