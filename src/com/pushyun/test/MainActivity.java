@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.augmentum.pushyun.PushGlobals;
-import com.augmentum.pushyun.service.PushA2DMService;
 import com.augmentum.pushyun.service.PushService;
 
 public class MainActivity extends Activity {
@@ -29,7 +28,6 @@ public class MainActivity extends Activity {
         registerReceiver(mHandleMessageReceiver, new IntentFilter(PushGlobals.DISPLAY_MESSAGE_ACTION));
 
         startPushService();
-        //sendRegisterBroadcast("Test");
     }
     
     private void startPushService()
@@ -37,7 +35,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent();
         intent.putExtra("app_key", PushGlobals.SENDER_ID);
         intent.putExtra("app_service_path", "com.pushyun.test.PushMsgIntentService");
-        intent.putExtra("gcm_enabled", false);
+        intent.putExtra("gcm_enabled", true);
         PushService.startToLoad(this, intent);
     }
     

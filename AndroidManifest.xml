@@ -35,9 +35,9 @@
 
     <!-- This app has permission to register and receive data message. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -45,6 +45,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,15 +63,18 @@
         -->
         <receiver
             android:name="com.augmentum.pushyun.broadcast.MsgBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
-               <!--  Receives the actual messages. -->
+
+                <!-- Receives the actual messages. -->
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <!-- Receives the gcm registration id. -->
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.pushyun.test" />
+            </intent-filter>
+            <intent-filter>
                 <!-- Receives the a2dm registration id. -->
                 <action android:name="com.augmentum.pushyun.a2dm.intent.REGISTRATION" />
-
                 <category android:name="com.pushyun.test" />
             </intent-filter>
         </receiver>
