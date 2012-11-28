@@ -10,13 +10,16 @@ import com.augmentum.pushyun.service.MsgHandlerIntentService;
 
 public class PushMsgIntentService extends MsgHandlerIntentService
 {
+
     private static final String LOG_TAG = "PushMsgIntentService";
     private static String mMsg = "";
+    public static Long mCounter = 0L;
 
     @Override
     protected void onMessageDelivered(Context context, HashMap<String, String> msgMap)
     {
         mMsg = "***** onMessageDelivered *****message=" +msgMap.get("message");
+        mCounter ++ ;
         PushGlobals.sendPushBroadcast(context, PushGlobals.DISPLAY_MESSAGE_ACTION, mMsg);
         Log.v(LOG_TAG, mMsg);
 
